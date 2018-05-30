@@ -1,57 +1,56 @@
 {
-    "name": "async-flow",
-    "version": "0.0.1",
-    "description": "",
-    "browser": "dist/es5-commonjs/index.js",
-    "module": "dist/es5-esm/index.js",
-    "main": "dist/es2015-commonjs/index.js",
-    "es2015": "dist/es2015-esm/index.js",
-    "esnext": "dist/esnext/index.js",
-    "types": "types/index.d.ts",
-    "scripts": {
-      "build": "./node_modules/.bin/tsc",
-      "build-es5-commonjs": "npm run build -- --target es5 --module commonjs --outDir dist/es5-commonjs",
-      "build-es5-esm": "npm run build -- --target es5 --module es6 --outDir dist/es5-esm",
-      "build-es2015-commonjs": "npm run build",
-      "build-es2015-esm": "npm run build -- --target es2015 --module es6 --outDir dist/es2015-esm",
-      "build-esnext": "npm run build -- --target esnext --module esnext --outDir dist/esnext",
-      "build-all": "rm -rf dist && (npm run build-es5-commonjs & npm run build-es5-esm & npm run build-es2015-commonjs & npm run build-es2015-esm & npm run build-esnext)",
-      "watch": "npm run build -- --watch",
-      "test": "./node_modules/.bin/nyc --reporter=lcov --require ts-node/register ./node_modules/.bin/tape tests/**/*.ts | tap-spec",
-      "coverage": "./node_modules/.bin/nyc report --reporter=text",
-      "docs": "rm -rf docs && ./node_modules/.bin/typedoc --name async-flow --readme README.md --module commonjs --target ES5 --excludeExternals --out docs --theme default src/ && touch docs/.nojekyll",
-      "clean-up": "rm -rf ts-node-* & rm -rf .nyc_output",
-      "deploy": "npm run build-all && npm publish"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/IZEDx/async-flow.git"
-    },
-    "author": "Niklas Kühtmann",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/IZEDx/async-flow/issues"
-    },
-    "homepage": "https://github.com/IZEDx/async-flow#readme",
-    "nyc": {
-      "include": [
-        "src/**/*.ts"
-      ],
-      "extension": [
-        ".ts"
-      ]
-    },
-    "devDependencies": {
-      "@types/tape": "^4.2.31",
-      "nyc": "^11.4.1",
-      "tap-spec": "^4.1.1",
-      "tape": "^4.9.0",
-      "ts-node": "^4.0.1",
-      "typedoc": "^0.10.0",
-      "typescript": "next"
-    },
-    "dependencies": {
-      "@types/node": "^8.10.2"
-    }
+  "name": "async-flow",
+  "version": "0.0.1",
+  "description": "",
+  "browser": "dist/es5-commonjs/index.js",
+  "module": "dist/es5-esm/index.js",
+  "main": "dist/es2015-commonjs/index.js",
+  "es2015": "dist/es2015-esm/index.js",
+  "esnext": "dist/esnext/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "build-es5-commonjs": "npm run build -- --target es5 --module commonjs --outDir dist/es5-commonjs",
+    "build-es5-esm": "npm run build -- --target es5 --module es6 --outDir dist/es5-esm",
+    "build-es2015-commonjs": "npm run build",
+    "build-es2015-esm": "npm run build -- --target es2015 --module es6 --outDir dist/es2015-esm",
+    "build-esnext": "npm run build -- --target esnext --module esnext --outDir dist/esnext",
+    "build-all": "rm -rf dist && (npm run build-es5-commonjs & npm run build-es5-esm & npm run build-es2015-commonjs & npm run build-es2015-esm & npm run build-esnext)",
+    "watch": "npm run build -- --watch",
+    "test": "./node_modules/.bin/nyc --reporter=lcov --require ts-node/register ./node_modules/.bin/tape tests/**/*.ts | tap-spec",
+    "coverage": "./node_modules/.bin/nyc report --reporter=text",
+    "docs": "rm -rf docs && ./node_modules/.bin/typedoc --name async-flow --readme README.md --module commonjs --target ES5 --excludeExternals --out docs --theme default src/ && touch docs/.nojekyll",
+    "clean-up": "rm -rf ts-node-* & rm -rf .nyc_output",
+    "deploy": "npm run build-all && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IZEDx/async-flow.git"
+  },
+  "author": "Niklas Kühtmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IZEDx/async-flow/issues"
+  },
+  "homepage": "https://github.com/IZEDx/async-flow#readme",
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/tape": "^4.2.31",
+    "nyc": "^11.4.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0",
+    "ts-node": "^4.0.1",
+    "typedoc": "^0.10.0",
+    "typescript": "next"
+  },
+  "dependencies": {
+    "@types/node": "^8.10.2"
   }
-  
+}
