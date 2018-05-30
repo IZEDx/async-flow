@@ -24,6 +24,19 @@ export class Pipe<T> {
         });
     }
 
+    static operator<T, K>(next: (value: T, sink: Sink<K>) => MaybePromise<void>): Operator<T, K> {
+        return input => new Pipe<K>(sink => {
+            input.flush(new Sink({
+                async next(value: T) {
+                    return next(value, sink);
+                },
+                return: () => sink.return(),
+                throw: err => sink.throw(err),
+                pluck: () => sink.pluck()
+            }))
+        });
+    }
+
     pipe<K>(operator: Operator<T, K>): Pipe<K> {
         return operator(this);
     }

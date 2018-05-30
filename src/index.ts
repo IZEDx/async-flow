@@ -19,3 +19,5 @@ export * from "./pipe";
 export * from "./valve";
 export * from "./tank";
 export * from "./pressure";
+
+export * from "./operators";
