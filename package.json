@@ -17,7 +17,7 @@
     "build-esnext": "npm run build -- --target esnext --module esnext --outDir dist/esnext",
     "build-all": "rm -rf dist && (npm run build-es5-commonjs & npm run build-es5-esm & npm run build-es2015-commonjs & npm run build-es2015-esm & npm run build-esnext)",
     "watch": "npm run build -- --watch",
-    "test": "./node_modules/.bin/nyc --reporter=lcov --require ts-node/register ./node_modules/.bin/tape tests/**/*.ts | tap-spec",
+    "test": "tsc ./tests/**/*.ts && ava ./tests/**/*.ts",
     "coverage": "./node_modules/.bin/nyc report --reporter=text",
     "docs": "rm -rf docs && ./node_modules/.bin/typedoc --name async-flow --readme README.md --module commonjs --target ES5 --excludeExternals --out docs --theme default src/ && touch docs/.nojekyll",
     "clean-up": "rm -rf ts-node-* & rm -rf .nyc_output",
@@ -43,14 +43,16 @@
   },
   "devDependencies": {
     "@types/tape": "^4.2.31",
-    "nyc": "^11.4.1",
+    "ava": "^0.25.0",
+    "nyc": "^11.9.0",
+    "tap": "^12.0.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.9.0",
     "ts-node": "^4.0.1",
     "typedoc": "^0.10.0",
-    "typescript": "^3.0.0-dev.20180530"
+    "typescript": "^3.0.0-dev.20180602"
   },
   "dependencies": {
-    "@types/node": "^8.10.2"
+    "@types/node": "^8.10.18"
   }
 }

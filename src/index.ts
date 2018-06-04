@@ -10,6 +10,10 @@ export function polyfillAsyncIterator() {
 polyfillAsyncIterator();
 
 export type MaybePromise<T> = Promise<T>|T;
+export async function maybeAwait<T>(mp: MaybePromise<T>) {
+    return mp instanceof Promise ? await mp : mp;
+}
+
 export type Optional<T> = { 
     [P in keyof T]?: T[P] 
 }
