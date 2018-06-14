@@ -4,6 +4,7 @@ export interface ISink<T> {
     next(value: T): MaybePromise<void>;
     throw?(error: Error): MaybePromise<void>;
     return?(): MaybePromise<void>;
+    pluck?(): MaybePromise<void>;
 }
 
 export class Sink<T> implements ISink<T> {
@@ -37,5 +38,14 @@ export class Sink<T> implements ISink<T> {
 
     pluck() {
         this._plucked = true;
+        if (this.sink.pluck) {
+            return this.sink.pluck();
+        }
     }
+}
+
+export function to<T>(fn: (value: T) => void): Sink<T> {
+    return new Sink({
+        next: value => fn(value)
+    });
 }

@@ -40,9 +40,9 @@
   },
   "devDependencies": {
     "typedoc": "^0.10.0",
-    "typescript": "next"
+    "typescript": "^3.0.0-dev.20180602"
   },
   "dependencies": {
-    "@types/node": "^8.10.2"
+    "@types/node": "^8.10.18"
   }
 }

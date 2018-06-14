@@ -1,27 +1,28 @@
+import { MaybePromise } from ".";
 
 export namespace Pressure {
-    export function immediate<T>(fn: () => T|Promise<T>) {
+    export function immediate<T>(fn: () => MaybePromise<T>) {
         return timeout(0, fn);
     }
     
-    export function timeout<T>(ms: number, fn: () => T|Promise<T>) {
-        return regulate(fn => setTimeout(fn, ms), fn);
+    export function timeout<T>(ms: number, callback: () => MaybePromise<T>) {
+        return pressurize(cb => setTimeout(cb, ms), callback);
     }
     
-    export function animationFrame<T>(fn: () => T|Promise<T>) {
-        return regulate(fn => requestAnimationFrame(time => fn(time)), fn);
+    export function animationFrame<T>(callback: () => MaybePromise<T>) {
+        return pressurize(cb => requestAnimationFrame(time => cb(time)), callback);
     }
     
     
-    export async function regulate<T>(regulator: (fn: Function) => void, fn: () => T|Promise<T>) {
+    export async function pressurize<T>(pressurizer: (resolve: Function) => void, callback: () => MaybePromise<T>) {
         return new Promise<T>((resolve, reject) => {
-            regulator(() => {
+            pressurizer(() => {
                 try {
-                    const t = fn();
-                    if (t instanceof Promise) {
-                        t.then(resolve).catch(reject);
+                    const result = callback();
+                    if (result instanceof Promise) {
+                        result.then(resolve).catch(reject);
                     } else {
-                        resolve(t);
+                        resolve(result);
                     }
                 } catch(err) {
                     reject(err);
